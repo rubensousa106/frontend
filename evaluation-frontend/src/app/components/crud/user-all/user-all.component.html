@@ -1,0 +1,30 @@
+<h3>ALL USERS</h3>
+
+<table class= "table">
+  <tr class="bg-info text-grey">
+    <th>ID</th>
+    <th>USERNAME</th>
+    <th>PASSWORD</th>
+    <th>EMAIL</th>
+    <th>DATE OF REGISTRATION</th>
+    <th>ROLE</th>
+    <th>OPERATION</th>
+  </tr>
+  <tr *ngFor="let s of users">
+    <td> {{s.id}} </td>
+    <td> {{s.username}} </td>
+    <td> {{s.password}} </td>
+    <td> {{s.email}} </td>
+    <td> {{s.dateOfRegistration}} </td>
+    <td> {{s.role}} </td>
+    <td>
+      <button class = "btn btn-danger" (click)="deleteUser(s.id)">Delete</button>
+<!--      <button class=  "btn btn-success" (click)="openEditModal(s.id)">Update</button>-->
+      <button class="btn btn-success" (click)="editUser(s.id)">Editar</button>
+    </td>
+
+  </tr>
+</table>
+
+{{message}}
+

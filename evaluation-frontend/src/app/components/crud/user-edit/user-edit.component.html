@@ -1,0 +1,33 @@
+<H1>EDIT</H1>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username" class="form-control">
+    <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="text-danger">
+      Username é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="dateOfRegistration">Date of Registration:</label>
+    <input type="date" id="dateOfRegistration" formControlName="dateOfRegistration" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <input type="number" id="role" formControlName="role" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+</form>
