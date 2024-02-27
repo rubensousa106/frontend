@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+<form (submit)="login($event)">
+  <div>
+    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="username" required />
+  </div>
+  <div>
+    <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="password" required />
+  </div>
+  <button>Login</button>
+</form>
+<button (click)="logout()">Logout</button>
+
+
+

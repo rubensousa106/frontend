@@ -1,4 +1,6 @@
 <h3>ALL USERS</h3>
+<!-- Em algum lugar do seu template superior -->
+
 
 <table class= "table">
   <tr class="bg-info text-grey">
@@ -18,8 +20,7 @@
     <td> {{s.dateOfRegistration}} </td>
     <td> {{s.role}} </td>
     <td>
-      <button class = "btn btn-danger" (click)="deleteUser(s.id)">Delete</button>
-<!--      <button class=  "btn btn-success" (click)="openEditModal(s.id)">Update</button>-->
+      <button *ngIf="s && s.role === 1" class="btn btn-danger" (click)="deleteUser(s.id)">Delete</button>
       <button class="btn btn-success" (click)="editUser(s.id)">Editar</button>
     </td>
 

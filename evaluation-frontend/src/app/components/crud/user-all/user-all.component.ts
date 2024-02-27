@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../../model/user";
+import { User } from '../../../model/user';
 import {UserService} from "../../../service/user.service";
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -58,5 +58,6 @@ export class UserAllComponent implements OnInit{
     const modalRef = this.modalService.open(UserEditComponent);
     modalRef.componentInstance.userId = userId; // Passe o ID do usuário para o componente de edição
   }
+
 
 }
