@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from "./auth.service";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -10,15 +9,9 @@ export class AppComponent implements OnInit {
   isAuthenticated = false;
   username: string | undefined;
 
-  constructor(public authService: AuthService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.authService.isAuthenticated().subscribe((isAuthenticated) => {
-      this.isAuthenticated = isAuthenticated;
-    });
-
-    this.authService.getUsername().subscribe((username) => {
-      this.username = username;
-    });
+    // ... o restante do código
   }
 }

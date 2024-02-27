@@ -3,11 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./pages/login/login.component";
 import {LayoutComponent} from "./pages/layout/layout.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
-import {UserEditComponent} from "./components/crud/user-edit/user-edit.component";
-import {UserCreateComponent} from "./components/crud/user-create/user-create.component";
-import {UserAllComponent} from "./components/crud/user-all/user-all.component";
+import {UserEditComponent} from "./pages/crud/user-edit/user-edit.component";
+import {UserCreateComponent} from "./pages/crud/user-create/user-create.component";
+import {UserAllComponent} from "./pages/crud/user-all/user-all.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {authGuard} from "./auth.guard";
+import {authGuard} from "./service/auth.guard";
 
 export const routes: Routes = [
   {path:'home',component:HomeComponent},
