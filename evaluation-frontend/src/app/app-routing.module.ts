@@ -14,6 +14,7 @@ export const routes: Routes = [
    {path:'all',component:UserAllComponent,canActivate: [authGuard]},
    {path:'add',component:UserCreateComponent,canActivate: [authGuard]},
    {path:'edit/:id',component:UserEditComponent,canActivate: [authGuard]},
+  {path:'dashboard',component:DashboardComponent,canActivate: [authGuard]},
    {path:'', redirectTo:'home', pathMatch:'full'},
 
   {

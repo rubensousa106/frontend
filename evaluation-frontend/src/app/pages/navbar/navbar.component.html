@@ -22,7 +22,7 @@
           <a class="dropdown-item text-grey" href="#" routerLink="all">View All</a>
         </div>
       </li>
-      <!--<li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link text-white" href="#" routerLink="login">
           <ng-container *ngIf="authService.isAuthenticated() | async; else notAuthenticated">
             <div class="dropdown">
@@ -32,7 +32,7 @@
               </button>
               <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
                 <a class="dropdown-item" href="#" (click)="logout()">Log-Out</a>
-                <a class="dropdown-item" href="#">O Meu Perfil</a>
+                <a class="dropdown-item" href="#" routerLink="dashboard">Dashboard</a>
               </div>
             </div>
           </ng-container>
@@ -40,7 +40,7 @@
             <a class="nav-link text-white" href="#" routerLink="login">A Minha Conta</a>
           </ng-template>
         </a>
-      </li>-->
+      </li>
 
     </ul>
   </div>

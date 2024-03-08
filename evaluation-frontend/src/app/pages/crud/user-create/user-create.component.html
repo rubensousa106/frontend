@@ -1,31 +1,40 @@
-<h1>ADD</h1>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username" class="form-control">
+<div mat-dialog-title>
+  <h1>ADD</h1>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="content" mat-dialog-content>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" required formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input [type]="hide ? 'password' : 'text'" matInput required formControlName="password">
+        <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
+                matSuffix>
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email" required>
+        <mat-error *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+          {{ getErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select Role</mat-label>
+        <mat-select formControlName="role" placeholder="Select">
+          <mat-option *ngFor="let val of userRoles" [value]="val">{{ val }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" class="form-control">
+  <div mat-dialog-actions class="action">
+    <button (click)="onSubmit()" class="btn btn-primary" type="submit"  [disabled]="isSubmitting">Submit</button>
+    <button (click)="onCancel()" class="btn btn-secondary" type="button">Cancelar</button>
   </div>
-
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" formControlName="email" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="dateOfRegistration">Date of Registration:</label>
-    <input type="date" id="dateOfRegistration" formControlName="dateOfRegistration" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="role">Role:</label>
-    <input type="number" id="role" formControlName="role" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-  <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
-
 </form>
-

@@ -1,33 +1,31 @@
-<H1>EDIT</H1>
+<h1>Edit User</h1>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username" class="form-control">
-    <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="text-danger">
-      Username é obrigatório.
-    </div>
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" [attr.disabled]="true">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" class="form-control">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password">
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" formControlName="email" class="form-control">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email">
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="dateOfRegistration">Date of Registration:</label>
-    <input type="date" id="dateOfRegistration" formControlName="dateOfRegistration" class="form-control">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Role</mat-label>
+    <mat-select formControlName="role">
+      <mat-option *ngFor="let role of roles" [value]="role.value">{{role.viewValue}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="role">Role:</label>
-    <input type="number" id="role" formControlName="role" class="form-control">
-  </div>
-
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-  <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+  <button mat-button type="button" (click)="onCancel()">Cancel</button>
 </form>

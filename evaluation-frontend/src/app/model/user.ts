@@ -1,13 +1,15 @@
+import {UserRole} from "./userRole";
+
 export class User {
 
   id : number;
   username :string;
   password:string;
   email:string;
-  role : number;
+  role: UserRole;
   dateOfRegistration : Date;
 
-  constructor( id : number, username :string, password:string, email:string, role : number, dateOfRegistration : Date)
+  constructor( id : number, username :string, password:string, email:string, role : UserRole, dateOfRegistration : Date)
   {
     this.id = id;
     this.username = username;

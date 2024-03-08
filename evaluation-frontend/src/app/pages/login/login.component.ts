@@ -19,16 +19,23 @@ export class LoginComponent {
 
   public login(event: Event) {
     event.preventDefault();
-    console.log(`Login clicked: ${this.username} / ${this.password}`); //remove this line
+    //Imprime  o username e password na consola. Apagar console.log
+    // console.log(`Login clicked: ${this.username} / ${this.password}`);
 
     this.authService
       .login({
         username: this.username,
         password: this.password
       })
-      .subscribe(() => {
+      .subscribe((response) => {
+        // Imprimir o token descodificado na consola
+        console.log("Decoded Token from LoginComponent:", response.decodedToken);
+
         alert('Login successful');
-        this.router.navigate(['/']).then(r => console.log(r)); //remove console.log
+
+        // Navegue para a página inicial. Apagar console.log
+        this.router.navigate(['/']).then(r => console.log(r));
+
       });
   }
 
@@ -36,4 +43,7 @@ export class LoginComponent {
     this.authService.logout();
   }
 
+  navigateToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }

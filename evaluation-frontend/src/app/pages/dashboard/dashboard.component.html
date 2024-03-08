@@ -1,1 +1,9 @@
-<h1>dashboard works</h1>
+<mat-toolbar color="primary">
+  <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>DASHBOARD</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openAddForm()">ADD</button>
+  <button mat-raised-button (click)="openShowAll()">ALL</button>
+</mat-toolbar>

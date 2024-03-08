@@ -1,31 +1,56 @@
-<h3>ALL USERS</h3>
-<!-- Em algum lugar do seu template superior -->
 
+<ng-container *ngIf="showTable">
+<mat-table [dataSource]="users" class="mat-elevation-z8">
 
-<table class= "table">
-  <tr class="bg-info text-grey">
-    <th>ID</th>
-    <th>USERNAME</th>
-    <th>PASSWORD</th>
-    <th>EMAIL</th>
-    <th>DATE OF REGISTRATION</th>
-    <th>ROLE</th>
-    <th>OPERATION</th>
-  </tr>
-  <tr *ngFor="let s of users">
-    <td> {{s.id}} </td>
-    <td> {{s.username}} </td>
-    <td> {{s.password}} </td>
-    <td> {{s.email}} </td>
-    <td> {{s.dateOfRegistration}} </td>
-    <td> {{s.role}} </td>
-    <td>
-      <button *ngIf="s && s.role === 1" class="btn btn-danger" (click)="deleteUser(s.id)">Delete</button>
-      <button class="btn btn-success" (click)="editUser(s.id)">Editar</button>
-    </td>
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.id }}</mat-cell>
+  </ng-container>
 
-  </tr>
-</table>
+  <!-- USERNAME Column -->
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef>USERNAME</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.username }}</mat-cell>
+  </ng-container>
+
+  <!-- PASSWORD Column -->
+  <ng-container matColumnDef="password">
+    <mat-header-cell *matHeaderCellDef>PASSWORD</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.password }}</mat-cell>
+  </ng-container>
+
+  <!-- EMAIL Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>EMAIL</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+  </ng-container>
+
+  <!-- DATE OF REGISTRATION Column -->
+  <ng-container matColumnDef="dateOfRegistration">
+    <mat-header-cell *matHeaderCellDef>DATE OF REGISTRATION</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.dateOfRegistration }}</mat-cell>
+  </ng-container>
+
+  <!-- ROLE Column -->
+  <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef>ROLE</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.role }}</mat-cell>
+  </ng-container>
+
+  <!-- OPERATION Column -->
+  <ng-container matColumnDef="operation">
+    <mat-header-cell *matHeaderCellDef>OPERATION</mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <button *ngIf="isUserAdmin$ | async" mat-button color="warn" (click)="deleteUser(user.id)">Delete</button>
+      <button mat-button color="primary" (click)="editUser(user.id)">Edit</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</ng-container>
 
 {{message}}
 

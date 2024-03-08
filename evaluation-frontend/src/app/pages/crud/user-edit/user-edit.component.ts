@@ -4,6 +4,7 @@ import {UserService} from "../../../service/user.service";
 import {NgbActiveModal, NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from '@angular/router';
 import {HttpErrorResponse} from "@angular/common/http";
+import {UserRole} from "../../../model/userRole";
 
 
 @Component({
@@ -18,6 +19,12 @@ export class UserEditComponent implements OnInit {
   userForm: FormGroup;
   userId!: number;
   protected readonly close = close;
+  roles = [
+    { value: UserRole.ADMIN, viewValue: 'Admin' }, //value é o valor que será enviado para o servidor e viewValue é o valor que será exibido no menu
+    { value: UserRole.USER, viewValue: 'User' },
+    { value: UserRole.TeachingStaff, viewValue: 'TEACHINGSTAFF' },
+    { value: UserRole.NonTeachingStaff, viewValue: 'NONTEACHINGSTAFF' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +33,7 @@ export class UserEditComponent implements OnInit {
     private route: ActivatedRoute  // Adicione o ActivatedRoute ao construtor
   ) {
     this.userForm = this.formBuilder.group({
-      id: [''],
+      id: [{ value: '', disabled: true }],
       username: [''],
       password: [''],
       email: [''],
