@@ -1,7 +1,7 @@
-import {Component, Input, NgModule, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../../service/user.service";
-import {NgbActiveModal, NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from '@angular/router';
 import {HttpErrorResponse} from "@angular/common/http";
 import {UserRole} from "../../../model/userRole";
@@ -18,22 +18,23 @@ export class UserEditComponent implements OnInit {
   @Input() user: any;
   userForm: FormGroup;
   userId!: number;
-  protected readonly close = close;
   roles = [
-    { value: UserRole.ADMIN, viewValue: 'Admin' }, //value é o valor que será enviado para o servidor e viewValue é o valor que será exibido no menu
-    { value: UserRole.USER, viewValue: 'User' },
-    { value: UserRole.TeachingStaff, viewValue: 'TEACHINGSTAFF' },
-    { value: UserRole.NonTeachingStaff, viewValue: 'NONTEACHINGSTAFF' },
+    {value: UserRole.ADMIN, viewValue: 'ADMIN'}, //value é o valor que será enviado para o servidor e viewValue é o valor que será exibido no menu
+    {value: UserRole.USER, viewValue: 'USER'},
+    {value: UserRole.TeachingStaff, viewValue: 'TeachingStaff'},
+    {value: UserRole.NonTeachingStaff, viewValue: 'NonTeachingStaff'},
   ];
+
+  protected readonly close = close;
 
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private userService: UserService,
-    private route: ActivatedRoute  // Adicione o ActivatedRoute ao construtor
+    private route: ActivatedRoute  // Adicionar o ActivatedRoute ao construtor
   ) {
     this.userForm = this.formBuilder.group({
-      id: [{ value: '', disabled: true }],
+      id: [{value: '', disabled: true}],
       username: [''],
       password: [''],
       email: [''],
@@ -45,14 +46,15 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Obtenha o ID do usuário da rota
+    // get ID do usuário da rota
     this.route.params.subscribe(params => {
       const idParam = params['id'];
 
-      if (!isNaN(idParam)) {  // Verifique se é um número
+      // Verifique se o ID é um número válido
+      if (!isNaN(idParam)) {
         this.userId = +idParam;
 
-        // Obtenha os detalhes do usuário usando o serviço
+        // get dos detalhes do usuário usando o serviço
         this.userService.getUserById(this.userId).subscribe(user => {
           // Preencha o formulário com os detalhes do usuário a ser editado
           this.userForm.patchValue(user);
@@ -65,7 +67,7 @@ export class UserEditComponent implements OnInit {
     });
   }
 
-
+  // Método para atualizar o utilizador
   onSubmit() {
     if (this.userForm.valid) {
       const updatedUser = {
@@ -76,31 +78,31 @@ export class UserEditComponent implements OnInit {
         role: this.userForm.get('role')?.value,
       };
 
-      // Chame o serviço para atualizar o usuário
+      // Atualiza o utilizador com o ID fornecido
       this.userService.updateUser(this.userId, updatedUser).subscribe(
         (response: any) => {
           if (response && typeof response === 'string') {
-            // Verifique se a resposta é uma mensagem de sucesso em formato de texto
+            // A resposta é uma mensagem de sucesso em formato de texto
             console.log('Resposta do servidor:', response);
-            // Trate a resposta conforme necessário, por exemplo, exibindo uma mensagem para o usuário
+            // Exiba a mensagem de sucesso conforme necessário
           } else {
-            // A resposta não é uma mensagem de sucesso em formato de texto, pode ser um JSON
+            // A resposta é inesperada
             console.warn('Resposta inesperada do servidor:', response);
-            // Trate a resposta conforme necessário para o seu caso
+            // Exiba a mensagem de erro conforme necessário
           }
 
-          // Aqui você pode adicionar mais lógica conforme necessário
+          // Fecha a janela modal após a atualização bem-sucedida
           this.activeModal.close('Update successful');
         },
         (error: HttpErrorResponse) => {
-          // Lida com erros durante a atualização
+          // Lida com erros de atualização do usuário
           console.error('Erro ao atualizar usuário:', error);
         }
       );
     }
   }
 
-
+  // Método para fechar a janela modal
   onCancel() {
     this.activeModal.close('Cancel')
   }

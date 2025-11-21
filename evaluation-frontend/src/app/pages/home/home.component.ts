@@ -27,7 +27,7 @@ export class HomeComponent {
   constructor() {}
 
   performLogin(): void {
-    // Use as credenciais fornecidas no formulário
+    //  credenciais fornecidas no formulário
     const { username, password } = this.loginData;
 
     this.authService.login({

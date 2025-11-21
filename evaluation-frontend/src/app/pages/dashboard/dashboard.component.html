@@ -1,9 +1,25 @@
+
 <mat-toolbar color="primary">
-  <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>DASHBOARD</span>
-  <span class="example-spacer"></span>
-  <button mat-raised-button (click)="openAddForm()">ADD</button>
-  <button mat-raised-button (click)="openShowAll()">ALL</button>
-</mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>DASHBOARD</span>
+    <span class="example-spacer"></span>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openAddForm()">
+        <mat-icon>add</mat-icon>
+        <span>ADD</span>
+      </button>
+      <button mat-menu-item (click)="openShowAll()">
+        <mat-icon>view_list</mat-icon>
+        <span>ALL</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Início</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+

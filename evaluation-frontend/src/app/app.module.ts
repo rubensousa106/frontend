@@ -35,6 +35,7 @@ import {
   MatTable
 } from "@angular/material/table";
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatMenu, MatMenuTrigger} from "@angular/material/menu";
 
 
 @NgModule({
@@ -80,7 +81,9 @@ import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/m
     MatDatepickerInput,
     MatDatepickerToggle,
     MatDatepicker,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatMenu,
+    MatMenuTrigger
 
   ],
   providers: [NgbActiveModal, provideAnimationsAsync()],
